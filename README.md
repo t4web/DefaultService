@@ -7,7 +7,7 @@ Add this project in your composer.json:
 
 ```json
 "require": {
-  "t4web/default-service": "~0.1.0"
+  "t4web/default-service": "~1.0.0"
 }
 ```
 
