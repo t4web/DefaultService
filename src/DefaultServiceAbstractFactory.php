@@ -2,12 +2,12 @@
 
 namespace T4web\DefaultService;
 
-use Zend\ServiceManager\AbstractFactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\Factory\AbstractFactoryInterface;
+use Interop\Container\ContainerInterface;
 
 class DefaultServiceAbstractFactory implements AbstractFactoryInterface
 {
-    public function canCreateServiceWithName(ServiceLocatorInterface $serviceManager, $name, $requestedName)
+    public function canCreate(ContainerInterface $container, $requestedName)
     {
         if (!is_string($requestedName)) {
             return false;
@@ -21,7 +21,7 @@ class DefaultServiceAbstractFactory implements AbstractFactoryInterface
         return class_exists($requestedName);
     }
 
-    public function createServiceWithName(ServiceLocatorInterface $serviceManager, $name, $requestedName)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $factoryName = $requestedName . "Factory";
         if (class_exists($factoryName)) {
