@@ -27,7 +27,7 @@ class DefaultServiceAbstractFactory implements AbstractFactoryInterface
         if (class_exists($factoryName)) {
             $factory = new $factoryName();
 
-            return $factory->createService($serviceManager);
+            return $factory($container);
         }
 
         return new $requestedName();
